@@ -6,13 +6,11 @@ public class RelationType {
     private final Color color;
     private final float strokeWidth;
     private final boolean dashed;
-    private final RelationKind kind;
 
-    public RelationType(Color color, float strokeWidth, boolean dashed, RelationKind kind) {
+    public RelationType(Color color, float strokeWidth, boolean dashed) {
         this.color = color;
         this.strokeWidth = strokeWidth;
         this.dashed = dashed;
-        this.kind = kind;
     }
 
     public void draw(Graphics g, int x1, int y1, int x2, int y2) {
@@ -53,9 +51,5 @@ public class RelationType {
         arrowHead.addPoint(xArrow2, yArrow2);
 
         g2.fillPolygon(arrowHead);
-    }
-
-    public RelationKind getKind() {
-        return this.kind;
     }
 }

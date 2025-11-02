@@ -5,7 +5,6 @@ import node.NodeType;
 import node.NodeTypeFactory;
 import node.ShapeType;
 import relation.Relation;
-import relation.RelationKind;
 import relation.RelationType;
 import relation.RelationTypeFactory;
 
@@ -35,9 +34,9 @@ public class MindMapManager {
     }
 
 
-    public void addRelation(Node from, Node to, RelationKind kind, Color color, float strokeWidth, boolean dashed, String label) {
-        RelationType type = RelationTypeFactory.getInstance().getRelationType(color, strokeWidth, dashed, kind);
-        relations.add(new Relation(from, to, type, label, 0, 0));
+    public void addRelation(Node from, Node to, Color color, float strokeWidth, boolean dashed) {
+        RelationType type = RelationTypeFactory.getInstance().getRelationType(color, strokeWidth, dashed);
+        relations.add(new Relation(from, to, type, 0, 0));
     }
 
 

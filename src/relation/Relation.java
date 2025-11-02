@@ -11,7 +11,7 @@ public class Relation {
     private final int offsetX;
     private final int offsetY;
 
-    public Relation(Node from, Node to, RelationType type, String label, int offsetX, int offsetY) {
+    public Relation(Node from, Node to, RelationType type, int offsetX, int offsetY) {
         this.from = from;
         this.to = to;
         this.type = type;
