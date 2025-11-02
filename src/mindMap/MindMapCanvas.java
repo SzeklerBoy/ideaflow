@@ -1,6 +1,7 @@
 package mindMap;
 
 import node.Node;
+import relation.RelationKind;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,25 @@ public class MindMapCanvas extends JPanel {
     private final MindMapManager mindMapManager = MindMapManager.getInstance();
     private Node selectedNode;
     private int offsetX, offsetY;
+    private boolean relationMode = false;
+    private Node startNode = null;
+    private RelationKind currentKind;
+    private Color currentRelationColor;
+    private float currentStrokeWidth;
+    private boolean currentDashed;
+    private String currentLabel;
+
+    // Called from MindMapMenuPanel
+    public void enableRelationCreation(RelationKind kind, Color color, float strokeWidth, boolean dashed, String label) {
+        this.relationMode = true;
+        this.currentKind = kind;
+        this.currentRelationColor = color;
+        this.currentStrokeWidth = strokeWidth;
+        this.currentDashed = dashed;
+        this.currentLabel = label;
+        this.startNode = null;
+    }
+
 
     public MindMapCanvas() {
         setPreferredSize(new Dimension(800, 600));

@@ -23,7 +23,7 @@ public class Relation {
         int x1 = from.getX() + offsetX;
         int y1 = from.getY() + offsetY;
         int x2 = to.getX();
-        int y2 = from.getY();
+        int y2 = to.getY();
 
         type.draw(g, x1, y1, x2, y2);
     }
