@@ -5,6 +5,7 @@ import node.ShapeType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class MindMapMenuPanel extends JPanel {
@@ -103,11 +104,21 @@ public class MindMapMenuPanel extends JPanel {
         buttonPanel.add(addButton);
         buttonPanel.add(clearButton);
 
+        JButton saveButton = new JButton("💾 Save as PNG");
+        saveButton.setBackground(new Color(34, 139, 34));
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setFocusPainted(false);
+
+        buttonPanel.add(saveButton);
+
+
         parent.add(buttonPanel);
         parent.add(Box.createVerticalStrut(10));
 
         addButton.addActionListener(e -> addNodeAction());
         clearButton.addActionListener(e -> clearMapAction());
+        saveButton.addActionListener(e -> saveCanvasAsImage());
+
     }
 
     private void addNodeAction() {
@@ -142,13 +153,6 @@ public class MindMapMenuPanel extends JPanel {
         JLabel title = new JLabel("🔗 Create Relation");
         title.setFont(title.getFont().deriveFont(Font.BOLD, 14f));
         parent.add(title);
-        parent.add(Box.createVerticalStrut(10));
-
-        // Relation label
-        parent.add(new JLabel("Label:"));
-        relationLabelField = new JTextField("New Relation");
-        relationLabelField.setMaximumSize(new Dimension(300, 25));
-        parent.add(relationLabelField);
         parent.add(Box.createVerticalStrut(10));
 
         // FROM node
@@ -235,4 +239,41 @@ public class MindMapMenuPanel extends JPanel {
         MindMapManager.getInstance().addRelation(from, to, color, strokeWidth, dashed);
         mindMapCanvas.repaint();
     }
+
+    private void saveCanvasAsImage() {
+        // Let the user choose a save location
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save Mind Map as PNG");
+        fileChooser.setSelectedFile(new java.io.File("mindmap.png"));
+
+        int result = fileChooser.showSaveDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            java.io.File file = fileChooser.getSelectedFile();
+            try {
+                // Create a BufferedImage the size of the canvas
+                int width = mindMapCanvas.getWidth();
+                int height = mindMapCanvas.getHeight();
+                BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+                // Paint the canvas onto the image
+                Graphics2D g2d = image.createGraphics();
+                mindMapCanvas.paint(g2d);
+                g2d.dispose();
+
+                // Ensure file ends with .png
+                if (!file.getName().toLowerCase().endsWith(".png")) {
+                    file = new java.io.File(file.getParentFile(), file.getName() + ".png");
+                }
+
+                // Write to disk
+                javax.imageio.ImageIO.write(image, "png", file);
+
+                JOptionPane.showMessageDialog(this, "Mind map saved to:\n" + file.getAbsolutePath());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error saving image: " + ex.getMessage());
+            }
+        }
+    }
+
 }
