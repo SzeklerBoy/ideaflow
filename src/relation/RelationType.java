@@ -30,9 +30,9 @@ public class RelationType {
             g2.setStroke(new BasicStroke(strokeWidth));
         }
 
-        g2.drawLine(x1,y1,x2,y2);
+        g2.drawLine(x1, y1, x2, y2);
 
-        drawArrowHead(g2,x1,y1,x2,y2);
+        drawArrowHead(g2, x1, y1, x2, y2);
 
         g2.dispose();
     }

@@ -3,8 +3,8 @@ package node;
 import java.awt.*;
 
 public class Node {
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final String label;
     private final NodeType type;
 
@@ -17,6 +17,16 @@ public class Node {
 
     public void draw(Graphics g) {
         type.draw(g, x, y, label);
+    }
+
+    public boolean contains(int mx, int my) {
+        return mx >= x - type.getSize() / 2 && mx <= x + type.getSize() / 2 &&
+                my >= y - type.getSize() / 2 && my <= y + type.getSize() / 2;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {

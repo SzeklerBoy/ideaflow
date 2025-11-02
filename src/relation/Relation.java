@@ -19,12 +19,12 @@ public class Relation {
         this.offsetY = offsetY;
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         int x1 = from.getX() + offsetX;
         int y1 = from.getY() + offsetY;
         int x2 = to.getX();
         int y2 = from.getY();
 
-        type.draw(g,x1,y1,x2,y2);
+        type.draw(g, x1, y1, x2, y2);
     }
 }

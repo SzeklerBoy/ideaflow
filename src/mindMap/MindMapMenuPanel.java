@@ -16,28 +16,28 @@ public class MindMapMenuPanel extends JPanel {
     public MindMapMenuPanel(MindMapCanvas mindMapCanvas) {
         this.mindMapCanvas = mindMapCanvas;
 
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        setBackground(new Color(245,245,245));
-        setPreferredSize(new Dimension(250,600));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBackground(new Color(245, 245, 245));
+        setPreferredSize(new Dimension(250, 600));
 
         add(new JLabel("Label:"));
         labelField = new JTextField("New Node");
-        labelField.setMaximumSize(new Dimension(300,25));
+        labelField.setMaximumSize(new Dimension(300, 25));
         add(labelField);
         add(Box.createVerticalStrut(10));
 
         add(new JLabel("Shape:"));
         shapeCombo = new JComboBox<>(ShapeType.values());
-        shapeCombo.setMaximumSize(new Dimension(300,25));
+        shapeCombo.setMaximumSize(new Dimension(300, 25));
         add(shapeCombo);
         add(Box.createVerticalStrut(10));
 
         add(new JLabel("Color: "));
         JButton colorButton = new JButton("Choose Color");
-        colorButton.addActionListener(e-> {
-            Color newColor = JColorChooser.showDialog(this,"Choose Node Color",selectedColor);
-            if(newColor!= null) {
+        colorButton.addActionListener(e -> {
+            Color newColor = JColorChooser.showDialog(this, "Choose Node Color", selectedColor);
+            if (newColor != null) {
                 selectedColor = newColor;
                 colorButton.setBackground(selectedColor);
             }
@@ -49,7 +49,7 @@ public class MindMapMenuPanel extends JPanel {
 
         add(new JLabel("Size:"));
         sizeSpinner = new JSpinner(new SpinnerNumberModel(60, 30, 150, 5));
-        sizeSpinner.setMaximumSize(new Dimension(300,25));
+        sizeSpinner.setMaximumSize(new Dimension(300, 25));
         add(sizeSpinner);
         add(Box.createVerticalStrut(10));
 
@@ -69,8 +69,8 @@ public class MindMapMenuPanel extends JPanel {
         add(clearButton);
         add(Box.createVerticalGlue());
 
-        addButton.addActionListener(e-> addNodeAction());
-        clearButton.addActionListener(e-> clearMapAction());
+        addButton.addActionListener(e -> addNodeAction());
+        clearButton.addActionListener(e -> clearMapAction());
     }
 
     private void addNodeAction() {
@@ -82,7 +82,7 @@ public class MindMapMenuPanel extends JPanel {
         int x = mindMapCanvas.getWidth() / 2;
         int y = mindMapCanvas.getHeight() / 2;
 
-        MindMapManager.getInstance().addNode(x,y,label,color,size,shape);
+        MindMapManager.getInstance().addNode(x, y, label, color, size, shape);
         mindMapCanvas.repaint();
 
     }

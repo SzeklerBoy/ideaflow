@@ -20,7 +20,7 @@ public class RelationTypeFactory {
 
     public RelationType getRelationType(Color color, float strokeWidth, boolean dashed, RelationKind kind) {
         String key = color.toString() + "_" + strokeWidth + "_" + dashed + "_" + kind.name();
-        return relationTypes.computeIfAbsent(key, k -> new RelationType(color,strokeWidth,dashed,kind));
+        return relationTypes.computeIfAbsent(key, k -> new RelationType(color, strokeWidth, dashed, kind));
     }
 
     public int getPoolSize() {

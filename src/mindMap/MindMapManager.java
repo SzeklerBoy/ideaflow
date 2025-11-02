@@ -29,8 +29,8 @@ public class MindMapManager {
     }
 
     public void addNode(int x, int y, String label, Color color, int size, ShapeType shapeType) {
-        NodeType nodeType = NodeTypeFactory.getInstance().getNodeType(color,size,shapeType);
-        Node node = new Node(x,y,label,nodeType);
+        NodeType nodeType = NodeTypeFactory.getInstance().getNodeType(color, size, shapeType);
+        Node node = new Node(x, y, label, nodeType);
         nodes.add(node);
     }
 
@@ -42,11 +42,12 @@ public class MindMapManager {
 
 
     public void draw(Graphics g) {
-        for(Node node: nodes) {
+        if (g == null) return;
+        for (Node node : nodes) {
             node.draw(g);
         }
 
-        for(Relation relation: relations) {
+        for (Relation relation : relations) {
             relation.draw(g);
         }
     }
