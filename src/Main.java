@@ -1,15 +1,28 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import mindMap.MindMapCanvas;
+import mindMap.MindMapMenuPanel;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        JFrame frame = new JFrame("Ideaflow - Demo");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLayout(new BorderLayout(10, 10));
+        frame.setSize(1000, 700);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        MindMapCanvas mindMapCanvas = new MindMapCanvas();
+        MindMapMenuPanel menuPanel = new MindMapMenuPanel(mindMapCanvas);
+        JScrollPane scrollPane = new JScrollPane(menuPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // smoother scroll
+
+        frame.add(scrollPane, BorderLayout.WEST);
+        frame.add(new JScrollPane(mindMapCanvas), BorderLayout.CENTER);
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
