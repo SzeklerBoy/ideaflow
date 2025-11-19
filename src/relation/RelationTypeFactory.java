@@ -1,13 +1,13 @@
 package relation;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RelationTypeFactory {
     private static RelationTypeFactory instance;
-    private final Map<RelationTypeKey, RelationType> relationTypes = new HashMap<>();
+    private final Map<RelationTypeKey, RelationType> relationTypes = new ConcurrentHashMap<>();
 
     private RelationTypeFactory() {
     }

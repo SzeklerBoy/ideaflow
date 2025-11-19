@@ -1,7 +1,5 @@
 package node;
 
-import node.ShapeType;
-
 import java.awt.*;
 
 public class NodeType {
@@ -16,7 +14,7 @@ public class NodeType {
     }
 
     public void draw(Graphics g, int x, int y, String label) {
-        Graphics2D g2 = (Graphics2D) g.create(); // isolate context
+        Graphics2D g2 = (Graphics2D) g.create();
         int half = size / 2;
 
         // Fill Shape

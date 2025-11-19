@@ -1,13 +1,13 @@
 package node;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NodeTypeFactory {
     private static NodeTypeFactory instance;
-    private final Map<NodeTypeKey, NodeType> nodeTypes = new HashMap<>();
+    private final Map<NodeTypeKey, NodeType> nodeTypes = new ConcurrentHashMap<>();
 
     private NodeTypeFactory() {
     }
